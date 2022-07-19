@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/b1e5e13752.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b1e5e13752.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <form id="input">
+            <div class="row gy-3">
+                <div class="col-8 "><input type="text" class="form-control" name="city" id="input-city"
+                        placeholder="Enter a city"></div>
+                <div class="col-2"><button type="submit" class="btn btn-outline-light ">Search </button></div>
+                <div class="col-2"><button type="reset" class="btn btn-outline-light ">Current</button>
+                </div>
+        </form>
+        <div class="current m-3">
+            <div class="row">
+                <div class="col">
+                    <div class="date" id="current-date">Thuesday 16:07</div>
+                    <h1 class="display-4 fs-2" id="city">Kyiv</h1>
+                    <h2 class="display-1"><span id="temp">18</span><span id=degrees>°C</span> |<a class="display-6 "
+                            id="celsius-fahrenheit">°F</a> </h2>
+                    <h3 class="display-6 fs-6">Showers</h3>
+                </div>
+                <div class="col">
+                    <i class="fa-solid fa-cloud-showers-heavy current-img"></i>
+                    <p class="display-6 fs-6 m-1">Humidity: 60% <br />
+                        Wind: 8km/h</p>
+                </div>
+            </div>
+        </div>
+        <div class="next5days">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title fs-6">Wednesday</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">17°C/13°C</h6>
+                            <p class="card-text">
+                                <i class="fa-solid fa-cloud-rain fs-1"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title fs-6">Thirsday</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">25°C/14°C</h6>
+                            <p class="card-text">
+                                <i class="fa-solid fa-cloud-showers-heavy fs-1"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title fs-6">Friday</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">22°C/13°C</h6>
+                            <p class="card-text">
+                                <i class="fa-solid fa-cloud-showers-heavy fs-1"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center ">
+                        <div class="card-body">
+                            <h5 class="card-title fs-6">Saturday</h5>
+                            <h6 class="card-subtitle mb-2 text-muted ">24°C/13°C</h6>
+                            <p class="card-text">
+                                <i class="fa-solid fa-cloud-sun fs-1"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title fs-6">Sunday</h5>
+                            <h6 class="card-subtitle mb-2 text-muted fs-6 ">21°C/12°C</h6>
+                            <p class="card-text">
+                                <i class="fa-solid fa-cloud-showers-heavy fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer text-center fs-6 font-monospace">Coded by <strong>Lesia Shulezhko</strong></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
