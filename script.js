@@ -12,11 +12,18 @@ function submit(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
   axios.get(apiUrl).then(showTemp)
 }
-function showTemp(response){
+function showTemp(response) {
+  console.log(response);
   let tempInPosition = response.data.main.temp;
   let temp = document.querySelector("#temp");
   temp.innerHTML = Math.round(tempInPosition);
   OutputCity.innerHTML = response.data.name;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = response.data.main.humidity;
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = response.data.wind.speed;
+  let main = document.querySelector("#main");
+  main.innerHTML = response.data.weather[0].main;
 }
 function Navigator(event) {
   event.preventDefault();
