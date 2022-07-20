@@ -24,6 +24,11 @@ function showTemp(response) {
   wind.innerHTML = response.data.wind.speed;
   let main = document.querySelector("#main");
   main.innerHTML = response.data.weather[0].main;
+  let icon = document.querySelector("#icon");
+  iconCode = response.data.weather[0].icon;
+  icon.setAttribute(
+    "src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+  )
 }
 function Navigator(event) {
   event.preventDefault();
