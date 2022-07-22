@@ -1,43 +1,43 @@
 let now = new Date;
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let day = days[now.getDay()];
-
-//console.log(startForecast);
 let time = `${now.getHours()}:${now.getMinutes()}`;
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = `${day} ${time}`;
 
-
-//function formatDate(timestamp) {
-  //let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  //let day = days[now.getDay()];
-  //return (day);
-//}
-
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
 function displayForecast(response) {
-  console.log(response);
-  let forecast = document.querySelector("#forecast");
+  let forecast = response.data.daily;
+  console.log(forecast);
+  let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function (day) {
-    forecastHTML = forecastHTML + `
-    <div class="col">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title fs-6">${day}</h5>
-          <h6 class="card-subtitle text-muted ">
-            <span id="min">17</span>°C/<span id="max">13</span>°C
-          </h6>
-          <p class="card-text">
-            <img class="imgForecast" src="http://openweathermap.org/img/wn/10d@2x.png" width="60px">
-          </p>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5){
+      forecastHTML = forecastHTML + `
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title fs-6">${formatDay(forecastDay.dt)}</h5>
+            <h6 class="card-subtitle text-muted ">
+              <span id="min">${Math.round(forecastDay.temp.min)}</span>°C/<span id="max">${Math.round(forecastDay.temp.max)}</span>°C
+            </h6>
+            <p class="card-text">
+              <img class="imgForecast" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" width="60px">
+            </p>
+          </div>
         </div>
-      </div>
-    </div>`
-    })
+      </div>`
+    }
+  })
+  
     forecastHTML = forecastHTML + `</div>`;
-    forecast.innerHTML = forecastHTML;
+    forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
@@ -50,8 +50,6 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-
-
 function submit(event) {
   event.preventDefault();
   let InputCity = document.querySelector("#input-city");
@@ -63,7 +61,6 @@ function submit(event) {
 function showTemp(response) {
   console.log(response);
   let tempInPosition = response.data.main.temp;
-
   temp.innerHTML = Math.round(tempInPosition);
   OutputCity.innerHTML = response.data.name;
   let humidity = document.querySelector("#humidity");
@@ -105,9 +102,7 @@ function converter(event) {
     converterLink.innerHTML = "°F";
     temp.innerHTML = Math.round((temp.innerHTML - 32) / 1.8);
   }
-
 }
-displayForecast();
 let apiKey = "600157a0514e78d72315f525be6579c1";
 let temp = document.querySelector("#temp");
 let input = document.querySelector("#input");
