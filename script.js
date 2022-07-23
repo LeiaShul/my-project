@@ -4,13 +4,18 @@ let day = days[now.getDay()];
 let time = `${now.getHours()}:${now.getMinutes()}`;
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = `${day} ${time}`;
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
 }
+function beginning() {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemp);
+
+}
+
 
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -41,9 +46,7 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let lat = coordinates.lat;
-  console.log(lat);
   let lon = coordinates.lon;
   let apiKey = "600157a0514e78d72315f525be6579c1";
   let apiUrl =`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -126,3 +129,4 @@ let converterLink = document.querySelector("#converter");
 converterLink.addEventListener("click", converter)
 let degrees = document.querySelector("#degrees");
 let OutputCity = document.querySelector("#city");
+beginning();
