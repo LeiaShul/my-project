@@ -25,7 +25,7 @@ function displayForecast(response) {
           <div class="card-body">
             <h5 class="card-title fs-6">${formatDay(forecastDay.dt)}</h5>
             <h6 class="card-subtitle text-muted ">
-              <span id="min">${Math.round(forecastDay.temp.min)}</span>°C/<span id="max">${Math.round(forecastDay.temp.max)}</span>°C
+              <span id="min">${Math.round(forecastDay.temp.min)}</span>°/<span id="max">${Math.round(forecastDay.temp.max)}</span>°
             </h6>
             <p class="card-text">
               <img class="imgForecast" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" width="60px">
@@ -92,15 +92,29 @@ function Position(position) {
 }
 function converter(event) {
   event.preventDefault();
+  let min = document.querySelectorAll("#min");
+  let max = document.querySelectorAll("#max");
   if (converterLink.innerHTML === "°F") {
     converterLink.innerHTML = "°C";
     degrees.innerHTML = "°F";
     temp.innerHTML = Math.round(temp.innerHTML * 1.8 + 32);
+    min.forEach(function(min){
+      min.innerHTML = Math.round(min.innerHTML * 1.8 + 32)
+    });
+    max.forEach(function(max){
+      max.innerHTML = Math.round(max.innerHTML * 1.8 + 32)
+    });
   }
   else {
     degrees.innerHTML = "°C";
     converterLink.innerHTML = "°F";
     temp.innerHTML = Math.round((temp.innerHTML - 32) / 1.8);
+    min.forEach(function(min){
+      min.innerHTML = Math.round((min.innerHTML - 32) / 1.8)
+    });
+    max.forEach(function(max){
+      max.innerHTML = Math.round((max.innerHTML - 32) / 1.8)
+    });
   }
 }
 let apiKey = "600157a0514e78d72315f525be6579c1";
@@ -112,4 +126,3 @@ let converterLink = document.querySelector("#converter");
 converterLink.addEventListener("click", converter)
 let degrees = document.querySelector("#degrees");
 let OutputCity = document.querySelector("#city");
-
