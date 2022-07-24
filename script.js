@@ -62,6 +62,7 @@ function submit(event) {
 
 }
 function showTemp(response) {
+  let temp = document.querySelector("#temp");
   console.log(response);
   celsiusTemp = response.data.main.temp;
   let humidity = document.querySelector("#humidity");
@@ -99,6 +100,7 @@ function converter(event) {
   let min = document.querySelectorAll("#min");
   let max = document.querySelectorAll("#max");
   if (converterLink.innerHTML === "°F") {
+    let temp = document.querySelector("#temp");
     converterLink.innerHTML = "°C";
     degrees.innerHTML = "°F";
     temp.innerHTML = Math.round(celsiusTemp * 1.8 + 32);
@@ -112,6 +114,7 @@ function converter(event) {
 
   else {
     degrees.innerHTML = "°C";
+    let temp = document.querySelector("#temp");
     converterLink.innerHTML = "°F";
     temp.innerHTML = Math.round(celsiusTemp);
     min.forEach(function(min){
@@ -124,7 +127,6 @@ function converter(event) {
 }
 let celsiusTemp = null;
 let apiKey = "600157a0514e78d72315f525be6579c1";
-let temp = document.querySelector("#temp");
 let input = document.querySelector("#input");
 input.addEventListener("submit", submit);
 input.addEventListener("reset", Navigator);
