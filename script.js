@@ -63,16 +63,17 @@ function submit(event) {
 }
 function showTemp(response) {
   console.log(response);
-  let tempInPosition = response.data.main.temp;
-  temp.innerHTML = Math.round(tempInPosition);
-  OutputCity.innerHTML = response.data.name;
+  celsiusTemp = response.data.main.temp;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = response.data.wind.speed;
   let main = document.querySelector("#main");
-  main.innerHTML = response.data.weather[0].main;
   let icon = document.querySelector("#icon");
+
+  temp.innerHTML = Math.round(celsiusTemp);
+  OutputCity.innerHTML = response.data.name;
+  humidity.innerHTML = response.data.main.humidity;
+  wind.innerHTML = response.data.wind.speed;
+  main.innerHTML = response.data.weather[0].main;
   iconCode = response.data.weather[0].icon;
   converterLink.innerHTML = "°F";
   degrees.innerHTML = "°C";
@@ -100,7 +101,7 @@ function converter(event) {
   if (converterLink.innerHTML === "°F") {
     converterLink.innerHTML = "°C";
     degrees.innerHTML = "°F";
-    temp.innerHTML = Math.round(temp.innerHTML * 1.8 + 32);
+    temp.innerHTML = Math.round(celsiusTemp * 1.8 + 32);
     min.forEach(function(min){
       min.innerHTML = Math.round(min.innerHTML * 1.8 + 32)
     });
@@ -108,10 +109,11 @@ function converter(event) {
       max.innerHTML = Math.round(max.innerHTML * 1.8 + 32)
     });
   }
+
   else {
     degrees.innerHTML = "°C";
     converterLink.innerHTML = "°F";
-    temp.innerHTML = Math.round((temp.innerHTML - 32) / 1.8);
+    temp.innerHTML = Math.round(celsiusTemp);
     min.forEach(function(min){
       min.innerHTML = Math.round((min.innerHTML - 32) / 1.8)
     });
@@ -120,6 +122,7 @@ function converter(event) {
     });
   }
 }
+let celsiusTemp = null;
 let apiKey = "600157a0514e78d72315f525be6579c1";
 let temp = document.querySelector("#temp");
 let input = document.querySelector("#input");
